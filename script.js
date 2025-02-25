@@ -12,12 +12,12 @@ let attempts = 0;
 let maxAttempts = 5;
 let hintDisplayed = false;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     document.body.style.fontFamily = "Arial, sans-serif";
     document.body.style.textAlign = "center";
     document.body.style.backgroundColor = "#f4f4f4";
     document.body.style.padding = "20px";
-    
+
     let container = document.createElement("div");
     container.style.maxWidth = "350px";
     container.style.margin = "auto";
@@ -25,10 +25,10 @@ document.addEventListener("DOMContentLoaded", function() {
     container.style.backgroundColor = "white";
     container.style.boxShadow = "0px 4px 8px rgba(0,0,0,0.2)";
     container.style.borderRadius = "10px";
-    
+
     let title = document.createElement("h2");
     title.innerText = "Censored Wordle";
-    
+
     let grid = document.createElement("div");
     grid.id = "grid";
     grid.style.display = "grid";
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     grid.style.gap = "5px";
     grid.style.marginBottom = "20px";
     grid.style.justifyContent = "center";
-    
+
     for (let i = 0; i < maxAttempts * 5; i++) {
         let cell = document.createElement("div");
         cell.className = "cell";
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
         cell.style.fontSize = "24px";
         grid.appendChild(cell);
     }
-    
+
     let keyboard = document.createElement("div");
     keyboard.id = "keyboard";
     keyboard.style.display = "grid";
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
     keyboard.style.marginTop = "20px";
     keyboard.style.justifyContent = "center";
     keyboard.style.padding = "10px";
-    
+
     const keys = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
     keys.forEach(letter => {
         let key = document.createElement("div");
@@ -74,12 +74,12 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         keyboard.appendChild(key);
     });
-    
+
     let inputContainer = document.createElement("div");
     inputContainer.style.display = "flex";
     inputContainer.style.justifyContent = "center";
     inputContainer.style.marginTop = "10px";
-    
+
     let input = document.createElement("input");
     input.id = "guessInput";
     input.type = "text";
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     input.style.padding = "10px";
     input.style.fontSize = "18px";
     input.style.textAlign = "center";
-    
+
     let button = document.createElement("button");
     button.id = "submitGuess";
     button.innerText = "Submit";
@@ -101,19 +101,19 @@ document.addEventListener("DOMContentLoaded", function() {
     button.style.borderRadius = "5px";
     button.style.cursor = "pointer";
     button.addEventListener("click", handleGuess);
-    
+
     inputContainer.appendChild(input);
     inputContainer.appendChild(button);
-    
+
     let message = document.createElement("p");
     message.id = "message";
     message.style.fontSize = "16px";
-    
+
     let hint = document.createElement("p");
     hint.id = "hint";
     hint.style.fontSize = "16px";
     hint.style.color = "red";
-    
+
     container.appendChild(title);
     container.appendChild(grid);
     container.appendChild(inputContainer);
@@ -122,3 +122,40 @@ document.addEventListener("DOMContentLoaded", function() {
     container.appendChild(hint);
     document.body.appendChild(container);
 });
+
+// ✅ Define `handleGuess()` function separately
+function handleGuess() {
+    let guess = document.getElementById("guessInput").value.toLowerCase();
+    if (!guess || guess.length !== 5) return; // Ensure valid input
+
+    let gridCells = document.getElementById("grid").children;
+    let rowStart = attempts * 5;
+
+    for (let i = 0; i < 5; i++) {
+        gridCells[rowStart + i].innerText = guess[i].toUpperCase();
+        if (guess[i] === selectedWord.word[i]) {
+            gridCells[rowStart + i].style.backgroundColor = "#6aaa64"; // Green for correct position
+        } else if (selectedWord.word.includes(guess[i])) {
+            gridCells[rowStart + i].style.backgroundColor = "#c9b458"; // Yellow for correct letter, wrong position
+        } else {
+            gridCells[rowStart + i].style.backgroundColor = "#787c7e"; // Gray for incorrect letter
+        }
+        gridCells[rowStart + i].style.border = "2px solid black";
+    }
+
+    attempts++;
+
+    if (guess === selectedWord.word) {
+        document.getElementById("message").innerText = `Correct! The word '${selectedWord.word}' was flagged because: ${selectedWord.reason}`;
+        document.getElementById("hint").innerText = "";
+    } else {
+        if (attempts === 4 && !hintDisplayed) {
+            document.getElementById("hint").innerText = `Hint: This word has been censored for controversial reasons.`;
+            hintDisplayed = true;
+        }
+        if (attempts >= maxAttempts) {
+            document.getElementById("message").innerText = `Game over! The word was '${selectedWord.word}'. Reason: ${selectedWord.reason}`;
+            document.getElementById("hint").innerText = "";
+        }
+    }
+}
