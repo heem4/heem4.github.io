@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     grid.style.gridTemplateColumns = "repeat(5, 1fr)";
     grid.style.gap = "5px";
     grid.style.marginBottom = "20px";
+    grid.style.justifyContent = "center";
     
     for (let i = 0; i < maxAttempts * 5; i++) {
         let cell = document.createElement("div");
@@ -49,11 +50,41 @@ document.addEventListener("DOMContentLoaded", function() {
         grid.appendChild(cell);
     }
     
+    let keyboard = document.createElement("div");
+    keyboard.id = "keyboard";
+    keyboard.style.display = "grid";
+    keyboard.style.gridTemplateColumns = "repeat(10, 1fr)";
+    keyboard.style.gap = "5px";
+    keyboard.style.marginTop = "20px";
+    keyboard.style.justifyContent = "center";
+    keyboard.style.padding = "10px";
+    
+    const keys = "QWERTYUIOPASDFGHJKLZXCVBNM".split("");
+    keys.forEach(letter => {
+        let key = document.createElement("div");
+        key.innerText = letter;
+        key.className = "key";
+        key.style.padding = "10px";
+        key.style.border = "2px solid #ccc";
+        key.style.textAlign = "center";
+        key.style.fontSize = "20px";
+        key.style.cursor = "pointer";
+        key.addEventListener("click", () => {
+            document.getElementById("guessInput").value += letter.toLowerCase();
+        });
+        keyboard.appendChild(key);
+    });
+    
+    let inputContainer = document.createElement("div");
+    inputContainer.style.display = "flex";
+    inputContainer.style.justifyContent = "center";
+    inputContainer.style.marginTop = "10px";
+    
     let input = document.createElement("input");
     input.id = "guessInput";
     input.type = "text";
     input.maxLength = 5;
-    input.style.width = "100%";
+    input.style.width = "120px";
     input.style.padding = "10px";
     input.style.fontSize = "18px";
     input.style.textAlign = "center";
@@ -63,13 +94,16 @@ document.addEventListener("DOMContentLoaded", function() {
     button.innerText = "Submit";
     button.style.padding = "10px 20px";
     button.style.fontSize = "18px";
-    button.style.marginTop = "10px";
+    button.style.marginLeft = "10px";
     button.style.backgroundColor = "#007BFF";
     button.style.color = "white";
     button.style.border = "none";
     button.style.borderRadius = "5px";
     button.style.cursor = "pointer";
     button.addEventListener("click", handleGuess);
+    
+    inputContainer.appendChild(input);
+    inputContainer.appendChild(button);
     
     let message = document.createElement("p");
     message.id = "message";
@@ -82,44 +116,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     container.appendChild(title);
     container.appendChild(grid);
-    container.appendChild(input);
-    container.appendChild(button);
+    container.appendChild(inputContainer);
+    container.appendChild(keyboard);
     container.appendChild(message);
     container.appendChild(hint);
     document.body.appendChild(container);
 });
-
-function handleGuess() {
-    let guess = document.getElementById("guessInput").value.toLowerCase();
-    if (guess.length !== 5) return;
-    let gridCells = document.getElementById("grid").children;
-    let rowStart = attempts * 5;
-    
-    for (let i = 0; i < 5; i++) {
-        gridCells[rowStart + i].innerText = guess[i].toUpperCase();
-        if (guess[i] === selectedWord.word[i]) {
-            gridCells[rowStart + i].style.backgroundColor = "#6aaa64";
-        } else if (selectedWord.word.includes(guess[i])) {
-            gridCells[rowStart + i].style.backgroundColor = "#c9b458";
-        } else {
-            gridCells[rowStart + i].style.backgroundColor = "#787c7e";
-        }
-        gridCells[rowStart + i].style.border = "2px solid black";
-    }
-    
-    attempts++;
-    
-    if (guess === selectedWord.word) {
-        document.getElementById("message").innerText = `Correct! The word '${selectedWord.word}' was flagged because: ${selectedWord.reason}`;
-        document.getElementById("hint").innerText = "";
-    } else {
-        if (attempts === 4 && !hintDisplayed) {
-            document.getElementById("hint").innerText = `Hint: This word has been censored for controversial reasons.`;
-            hintDisplayed = true;
-        }
-        if (attempts >= maxAttempts) {
-            document.getElementById("message").innerText = `Game over! The word was '${selectedWord.word}'. Reason: ${selectedWord.reason}`;
-            document.getElementById("hint").innerText = "";
-        }
-    }
-}
