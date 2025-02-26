@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     container.style.borderRadius = "10px";
 
     let title = document.createElement("h2");
-    title.innerText = "Censored Wordle";
+    title.innerText = "SHUSH";
 
     let grid = document.createElement("div");
     grid.id = "grid";
