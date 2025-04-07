@@ -94,7 +94,21 @@ const censoredWords = [
       }
     });
   }
-  initialize()
+  
+  initialize();
+
+  document.addEventListener("keydown", function(event) {
+    const key = event.key.toLowerCase();
+  
+    if (key === "enter") {
+      keyClick("enter");
+    } else if (key === "backspace") {
+      keyClick("⌫");
+    } else if (/^[a-z]$/.test(key)) {
+      keyClick(key);
+    }
+  });
+  
   
   function keyClick(key) {
     switch (key) {
