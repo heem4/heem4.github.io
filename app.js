@@ -6,7 +6,6 @@ const censoredWords = [
     { word: "blast", reason: "An explosion (or a fun party), but some systems flag it due to violent associations" },
     { word: "sniff", reason: "Means smelling something, but can be wrongly flagged because of its associations with crying, illness, or drugs in certain moderation systems." },
     { word: "grime", reason: "Dirt or filth, flagged in Roblox because words related to anything dirty are over-censored to keep the environment clean" },
-
   ];
   
   const selected = censoredWords[Math.floor(Math.random() * censoredWords.length)];
