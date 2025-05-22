@@ -173,3 +173,6 @@
 .play-again:hover {
   filter: brightness(1.1);
 }
+.hidden {
+  display: none;
+}
