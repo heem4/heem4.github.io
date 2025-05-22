@@ -83,20 +83,37 @@ function enter() {
   guesses.push(currentGuess);
 
   const isWin = currentGuess.map(k => k.key).join('') === SecretWord;
-  // only popup on win or final guess
-  if (isWin || guesses.length >= NumberOfGuesses) {
+
+  // WIN case: show the grow-and-fade “shush” then popup
+  if (isWin) {
+    // 1) trigger the shush animation (1s)
+    showShush(1000);
+
+    // 2) after it finishes, show the popup
     setTimeout(() => {
       showPopup(`
         <div class="message-title">
-          <span class="icon">${isWin ? '🎉' : '❌'}</span>
-          ${isWin ? 'Correct!' : 'Game Over!'} The word was  <strong>${SecretWord.toUpperCase()}</strong>.
+          <span class="icon">🎉</span>
+          Correct! The word was <strong>${SecretWord.toUpperCase()}</strong>.
+        </div>
+        <div class="message-body">Reason: ${selected.reason}</div>
+        <button class="play-again" onclick="playAgain()">Play Again</button>
+      `);
+    }, 1100); // 100ms buffer past the 1s animation
+
+  // LOSS case: straight to popup on final guess
+  } else if (guesses.length >= NumberOfGuesses) {
+    setTimeout(() => {
+      showPopup(`
+        <div class="message-title">
+          <span class="icon">❌</span>
+          Game Over! The word was <strong>${SecretWord.toUpperCase()}</strong>.
         </div>
         <div class="message-body">Reason: ${selected.reason}</div>
         <button class="play-again" onclick="playAgain()">Play Again</button>
       `);
     }, 100);
   }
-
 
   currentGuess = [];
 }
@@ -147,4 +164,16 @@ function closePopup() {
 function playAgain() {
   closePopup();
   window.location.reload();
+}
+
+function showShush(duration = 1000) {
+  const sh = document.getElementById("shush");
+  sh.classList.remove("hidden");
+  // Start animation
+  sh.classList.add("animate");
+  // After it runs, hide again
+  setTimeout(() => {
+    sh.classList.remove("animate");
+    sh.classList.add("hidden");
+  }, duration);
 }
