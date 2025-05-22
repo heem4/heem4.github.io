@@ -83,16 +83,20 @@ function enter() {
   guesses.push(currentGuess);
 
   const isWin = currentGuess.map(k => k.key).join('') === SecretWord;
-  setTimeout(() => {
-    showPopup(`
-      <div class="message-title">
-        <span class="icon">${isWin ? '🎉' : '❌'}</span>
-        ${isWin ? 'Correct!' : 'Game Over!'} The word was <strong>${SecretWord.toUpperCase()}</strong>.
-      </div>
-      <div class="message-body">Reason: ${selected.reason}</div>
-      <button class="play-again" onclick="playAgain()">Play Again</button>
-    `);
-  }, 100);
+  // only popup on win or final guess
+  if (isWin || guesses.length >= NumberOfGuesses) {
+    setTimeout(() => {
+      showPopup(`
+        <div class="message-title">
+          <span class="icon">${isWin ? '🎉' : '❌'}</span>
+          ${isWin ? 'Correct!' : 'Game Over!'} The word was <strong>${SecretWord.toUpperCase()}</strong>.
+        </div>
+        <div class="message-body">Reason: ${selected.reason}</div>
+        <button class="play-again" onclick="playAgain()">Play Again</button>
+      `);
+    }, 100);
+  }
+
 
   currentGuess = [];
 }
