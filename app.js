@@ -104,18 +104,6 @@ const censoredWords = [
     updateCurrentGuess(true);
     guesses.push(currentGuess);
 
-    function showPopup(message) {
-      const popup = document.getElementById("popup");
-      const messageBox = document.getElementById("popup-message");
-
-      messageBox.innerHTML = message;
-      popup.classList.remove("hidden");}
-
-
-    function closePopup() {
-      document.getElementById("popup").classList.add("hidden");}
-
-    
     if (currentGuess.map(k => k.key).join('') === SecretWord) {
       setTimeout(() => {
         showPopup(`
@@ -134,6 +122,17 @@ const censoredWords = [
     currentGuess = [];
   }
   
+      function showPopup(message) {
+      const popup = document.getElementById("popup");
+      const messageBox = document.getElementById("popup-message");
+
+      messageBox.innerHTML = message;
+      popup.classList.remove("hidden");}
+
+
+    function closePopup() {
+      document.getElementById("popup").classList.add("hidden");}
+      
   function updateKeyboard() {
     for (const key in keys) {
       if (keys[key] !== '') {
