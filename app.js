@@ -89,7 +89,7 @@ function enter() {
       showPopup(`
         <div class="message-title">
           <span class="icon">${isWin ? '🎉' : '❌'}</span>
-          ${isWin ? 'Correct!' : 'Game Over!'} The word was <strong>${SecretWord.toUpperCase()}</strong>.
+          ${isWin ? 'Correct!' : 'Game Over!'} The word was  <strong>${SecretWord.toUpperCase()}</strong>.
         </div>
         <div class="message-body">Reason: ${selected.reason}</div>
         <button class="play-again" onclick="playAgain()">Play Again</button>
