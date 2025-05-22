@@ -103,14 +103,24 @@ const censoredWords = [
   
     updateCurrentGuess(true);
     guesses.push(currentGuess);
+
+    function showPopup(message) {
+  document.getElementById("popup-message").innerHTML = message;
+  document.getElementById("popup").classList.remove("hidden");
+}
+
+function closePopup() {
+  document.getElementById("popup").classList.add("hidden");
+}
+
     
     if (currentGuess.map(k => k.key).join('') === SecretWord) {
       setTimeout(() => {
-        alert(`🎉 Correct! The word "${SecretWord.toUpperCase()}" was censored because: ${selected.reason}`);
+        showPopup(`🎉 Correct! The word <strong>${SecretWord.toUpperCase()}</strong> was censored because: ${selected.reason}`);
       }, 100);
     } else if (guesses.length >= NumberOfGuesses) {
       setTimeout(() => {
-        alert(`❌ Game Over! The word was "${SecretWord.toUpperCase()}". Reason: ${selected.reason}`);
+       showPopup(`❌ Game Over! The word was <strong>${SecretWord.toUpperCase()}</strong>.<br/>Reason: ${selected.reason}`);
       }, 100);
     }
   
