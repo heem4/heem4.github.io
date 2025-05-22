@@ -173,9 +173,6 @@
 .play-again:hover {
   filter: brightness(1.1);
 }
-.hidden {
-  display: none;
-}
 
 /* Keyframes: grow from tiny → huge → fade out */
 @keyframes shushGrow {
@@ -217,4 +214,7 @@
 .shush.animate .shush-emoji,
 .shush.animate img {
   animation: shushGrow 1s ease-out forwards;
+}
+.hidden {
+  display: none;
 }
