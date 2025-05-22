@@ -105,13 +105,15 @@ const censoredWords = [
     guesses.push(currentGuess);
 
     function showPopup(message) {
-  document.getElementById("popup-message").innerHTML = message;
-  document.getElementById("popup").classList.remove("hidden");
-}
+      const popup = document.getElementById("popup");
+      const messageBox = document.getElementById("popup-message");
 
-function closePopup() {
-  document.getElementById("popup").classList.add("hidden");
-}
+      messageBox.innerHTML = message;
+      popup.classList.remove("hidden");}
+
+
+    function closePopup() {
+      document.getElementById("popup").classList.add("hidden");}
 
     
     if (currentGuess.map(k => k.key).join('') === SecretWord) {
