@@ -116,11 +116,16 @@ function closePopup() {
     
     if (currentGuess.map(k => k.key).join('') === SecretWord) {
       setTimeout(() => {
-        showPopup(`🎉 Correct! The word <strong>${SecretWord.toUpperCase()}</strong> was censored because: ${selected.reason}`);
+        showPopup(`
+          <div class="message-title"><span class="icon">🎉</span>Correct! The word was <strong>${SecretWord.toUpperCase()}</strong>.</div>
+          <div class="message-body">Reason: ${selected.reason}</div>`);
+
       }, 100);
     } else if (guesses.length >= NumberOfGuesses) {
       setTimeout(() => {
-       showPopup(`❌ Game Over! The word was <strong>${SecretWord.toUpperCase()}</strong>.<br/>Reason: ${selected.reason}`);
+       showPopup(`
+        <div class="message-title"><span class="icon">❌</span>Game Over! The word was <strong>${SecretWord.toUpperCase()}</strong>.</div>
+        <div class="message-body">Reason: ${selected.reason}</div>`);
       }, 100);
     }
   

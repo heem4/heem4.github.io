@@ -67,13 +67,13 @@
   #enter{
     width: 60px;
   }
-  .popup {
+ .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.4); /* Dim background */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,15 +81,48 @@
 }
 
 .popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  text-align: center;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
   max-width: 400px;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
   color: #1a1a1b;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 16px;
+  position: relative;
 }
 
-.hidden {
-  display: none;
+.popup-content strong {
+  color: #6aaa64;
 }
+
+.popup-content .icon {
+  font-size: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.popup-content .message-title {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.popup button {
+  margin-top: 15px;
+  background-color: #6aaa64;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  display: block;
+  margin-left: auto;
+}
+
