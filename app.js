@@ -114,7 +114,6 @@ function enter() {
       `);
     }, 100);
   }
-
   currentGuess = [];
 }
 
@@ -149,7 +148,7 @@ function showPopup(html) {
   setTimeout(() => popup.classList.remove("fade-in"), 300);
 
   // Auto-close after 5 seconds
-  setTimeout(() => closePopup(), 5000);
+  setTimeout(() => closePopup(), 15000);
 }
 
 function closePopup() {
