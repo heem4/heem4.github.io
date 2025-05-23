@@ -11,7 +11,6 @@ const words = [
     { word: "votes", reason: "Limited in election manipulation concerns." },
     { word: "state", reason: "Blocked when discussing government control." },
     { word: "rebel", reason: "Associated with uprising movements." },
-    { word: "pride", reason: "LGBTQ+ censorship in certain countries." },
     { word: "peace", reason: "Flagged in war zones to prevent activism." },
     { word: "crime", reason: "Controlled in media to shape narratives." },
     { word: "slave", reason: "Erased in history revisionism." },

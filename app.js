@@ -1,11 +1,35 @@
 // Words + reasons list
 const censoredWords = [
-  { word: "pride", reason: "LGBTQ+ term censored in some regions." },
+  { word: "pride", reason: "LGBTQ+ term censored in some regions, but can also mean satisfaction" },
   { word: "booby", reason: "Can mean a silly person or a bird (booby bird), but is censored as a reference to boobs" },
   { word: "crash", reason: "An accident or system failure, but could be censored in sensitive contexts" },
   { word: "blast", reason: "An explosion (or a fun party), but some systems flag it due to violent associations" },
   { word: "sniff", reason: "Means smelling something, but can be wrongly flagged because of its associations with crying, illness, or drugs in certain moderation systems." },
   { word: "grime", reason: "Dirt or filth, flagged in Roblox because words related to anything dirty are over-censored to keep the environment clean" },
+  { word: "fanny", reason: "Used as a name in the U.S., offensive and refering to genitalia in the UK." },
+  { word: "rings", reason: "Flagged in China when used metaphorically for government influence." },
+  { word: "alien", reason: "Used in immigration control debates." },
+  { word: "candy", reason: "Flagged in some online markets due to associations with drugs." },
+  { word: "pills", reason: "Can refer to healthcare medication, but also substance use and as slang for drugs" },
+  { word: "black", reason: "Racial, linguistic, and historical connotations make it heavily charged." },
+  { word: "slave", reason: "Ethical concerns around language use and historical trauma, but is also a Tech term (e.g., 'master/slave')" },
+  { word: "right", reason: "Being correct, but is also politically and morally loaded so depending on the context it changes everything." },
+  { word: "cover", reason: "A version of a song, an insurance cover or can imply secrecy, censorship, or imitation" },
+  { word: "chain", reason: "Series of links, restaurant/company network, or bondage referring to historical oppresion" },
+  { word: "watch", reason: "Looking/observing, a timepiece or surveillance" },
+  { word: "stalk", reason: "Part of a plant or to follow someone secretly" },
+  { word: "score", reason: "Points in a game, musical composition or obtain illicitly (e.g., drugs)" },
+  { word: "shoot", reason: "Photo session, plant growth, or fire a weapon" },
+  { word: "joint", reason: "A body part, shared thing, or cannabis" },
+  { word: "punch", reason: "To hit somebody, a drink, a office-supply to make holes" },
+  { word: "glass", reason: "Transparent material and can also imply drugs" },
+  { word: "shoot", reason: "Photography or to fire a weapon" },
+  { word: "bruin", reason: "Bear (college mascot) and has similiarity to racial slurs" },
+  { word: "plump", reason: "Descriptive of fruit or texture, can also refer to body shaming or inappropriate body references" },
+  { word: "bangs", reason: "Haircut style, and also refering to violent slang (e.g., gang violence)" },
+  { word: "groom", reason: "Groom	Wedding role or refering to child grooming" },
+  { word: "gravy", reason: "Meaning sause or slang for money/drugs" },
+  { word: "molly", reason: "Personal name	and also  slang for MDMA/ecstasy" },
 ];
 
 const selected = censoredWords[Math.floor(Math.random() * censoredWords.length)];
@@ -96,7 +120,7 @@ function enter() {
         <div class="message-body">Reason: ${selected.reason}</div>
         <button class="play-again" onclick="playAgain()">Play Again</button>
       `);
-    }, 1100); // 100ms buffer past the 1s animation
+    }, 3100); // 100ms buffer past the 1s animation
 
   // LOSS case: straight to popup on final guess
   } else if (guesses.length >= NumberOfGuesses) {
