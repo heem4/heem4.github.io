@@ -120,7 +120,7 @@ function enter() {
         <div class="message-body">Reason: ${selected.reason}</div>
         <button class="play-again" onclick="playAgain()">Play Again</button>
       `);
-    }, 3100); // 100ms buffer past the 1s animation
+    }, 1100); // 100ms buffer past the 1s animation
 
   // LOSS case: straight to popup on final guess
   } else if (guesses.length >= NumberOfGuesses) {
