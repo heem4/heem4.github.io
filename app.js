@@ -84,17 +84,15 @@ function enter() {
 
   const isWin = currentGuess.map(k => k.key).join('') === SecretWord;
 
-  // WIN case: show the grow-and-fade “shush” then popup
   if (isWin) {
-    // 1) trigger the shush animation (1s)
-    showShush(1000);
+    showShush(3000);
 
     // 2) after it finishes, show the popup
     setTimeout(() => {
       showPopup(`
         <div class="message-title">
           <span class="icon">🎉</span>
-          Correct! The word was <strong>${SecretWord.toUpperCase()}</strong>.
+          Correct! The word was  <strong>${SecretWord.toUpperCase()}</strong>.
         </div>
         <div class="message-body">Reason: ${selected.reason}</div>
         <button class="play-again" onclick="playAgain()">Play Again</button>
@@ -107,7 +105,7 @@ function enter() {
       showPopup(`
         <div class="message-title">
           <span class="icon">❌</span>
-          Game Over! The word was <strong>${SecretWord.toUpperCase()}</strong>.
+          Game Over! The word was  <strong>${SecretWord.toUpperCase()}</strong>.
         </div>
         <div class="message-body">Reason: ${selected.reason}</div>
         <button class="play-again" onclick="playAgain()">Play Again</button>
