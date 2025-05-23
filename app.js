@@ -87,7 +87,6 @@ function enter() {
   if (isWin) {
     showShush(3000);
 
-    // 2) after it finishes, show the popup
     setTimeout(() => {
       showPopup(`
         <div class="message-title">
@@ -135,7 +134,6 @@ function updateCurrentGuess(guessed = false) {
 }
 
 // --- Popup and animation logic ---
-
 function showPopup(html) {
   const popup = document.getElementById("popup");
   const msg = document.getElementById("popup-message");
@@ -145,8 +143,8 @@ function showPopup(html) {
 
   setTimeout(() => popup.classList.remove("fade-in"), 300);
 
-  // Auto-close after 5 seconds
-  setTimeout(() => closePopup(), 15000);
+  // Auto-close popup
+  setTimeout(() => closePopup(), 25000);
 }
 
 function closePopup() {
