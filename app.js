@@ -30,6 +30,7 @@ const censoredWords = [
   { word: "groom", reason: "Groom	Wedding role or refering to child grooming" },
   { word: "gravy", reason: "Meaning sause or slang for money/drugs" },
   { word: "molly", reason: "Personal name	and also  slang for MDMA/ecstasy" },
+  { word: "nappy", reason: "Diaper (in American English) and has also been used negatively to describe tightly coiled hair texture, typically of Black people" },
 ];
 
 const selected = censoredWords[Math.floor(Math.random() * censoredWords.length)];
