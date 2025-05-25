@@ -115,7 +115,7 @@ function enter() {
       showPopup(`
         <div class="message-title">
           <span class="icon">🎉</span>
-          Correct! The word was  <strong>${SecretWord.toUpperCase()}</strong>.
+          Correct! The word was &nbsp;<strong>${SecretWord.toUpperCase()}</strong>.
         </div>
         <div class="message-body">Reason: ${selected.reason}</div>
         <button class="play-again" onclick="playAgain()">Play Again</button>
@@ -128,7 +128,7 @@ function enter() {
       showPopup(`
         <div class="message-title">
           <span class="icon">❌</span>
-          Game Over! The word was  <strong>${SecretWord.toUpperCase()}</strong>.
+          Game Over! The word was&nbsp;<strong>${SecretWord.toUpperCase()}</strong>.
         </div>
         <div class="message-body">Reason: ${selected.reason}</div>
         <button class="play-again" onclick="playAgain()">Play Again</button>
